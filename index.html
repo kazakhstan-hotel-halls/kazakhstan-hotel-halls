@@ -356,9 +356,9 @@ a.btn{text-decoration:none;display:inline-block}
   <footer>
     <div><b>Бронирование залов</b>
       <ul class="mgrs">
-        <li>Аида Марат <a class="num" href="tel:+77024782182">+7 702 478 21 82</a></li>
-        <li>Адеми Бектурганова <a class="num" href="tel:+77477422744">+7 747 742 27 44</a></li>
-        <li>Менеджер по бронированию <a class="num" href="tel:+77021221087">+7 702 122 10 87</a></li>
+        <li><a class="num" href="tel:+77024782182">+7 702 478 21 82</a></li>
+        <li><a class="num" href="tel:+77477422744">+7 747 742 27 44</a></li>
+        <li><a class="num" href="tel:+77021221087">+7 702 122 10 87</a></li>
       </ul>
     </div>
     <div><b>Отель «Казахстан»</b><br>Алматы, пр. Достык, 52/2<br><span class="num">+7 727 291 91 01 · +7 727 291 96 00</span><br>info@kazakhstanhotel.kz</div>
@@ -483,9 +483,9 @@ const DUR = {h4:"4 часа", h8:"8 часов"};
 
 /* Менеджеры по бронированию */
 const MANAGERS = [
-  {name:"Аида Марат",          phone:"+7 702 478 21 82", wa:"77024782182"},
-  {name:"Адеми Бектурганова",  phone:"+7 747 742 27 44", wa:"77477422744"},
-  {name:"Менеджер по бронированию", phone:"+7 702 122 10 87", wa:"77021221087"}
+  {phone:"+7 702 478 21 82", wa:"77024782182"},
+  {phone:"+7 747 742 27 44", wa:"77477422744"},
+  {phone:"+7 702 122 10 87", wa:"77021221087"}
 ];
 
 const STATUS_LABEL = {free:"Свободно", hold:"Предварительная бронь", booked:"Занято"};
@@ -862,7 +862,7 @@ function showMsg(kind, html){ const m=$("formMsg"); m.className="msg "+kind; m.i
 function showCopyFallback(r, lead){
   showMsg("ok", `${lead}<pre id="reqText">${esc(requestText(r))}</pre>
     <button class="btn sm" type="button" id="copyReq">Скопировать заявку</button>
-    <div class="wa">${MANAGERS.map(m => `<a class="btn sm ghost" href="https://wa.me/${m.wa}?text=${encodeURIComponent(requestText(r))}" target="_blank" rel="noopener">WhatsApp: ${esc(m.name)}</a>`).join("")}</div>`);
+    <div class="wa">${MANAGERS.map(m => `<a class="btn sm ghost" href="https://wa.me/${m.wa}?text=${encodeURIComponent(requestText(r))}" target="_blank" rel="noopener">WhatsApp ${esc(m.phone)}</a>`).join("")}</div>`);
   $("copyReq").onclick = async () => {
     try { await navigator.clipboard.writeText(requestText(r)); $("copyReq").textContent = "Скопировано"; }
     catch(e){ const sel = getSelection(), rg = document.createRange(); rg.selectNodeContents($("reqText")); sel.removeAllRanges(); sel.addRange(rg); $("copyReq").textContent = "Выделено — нажмите Копировать"; }
