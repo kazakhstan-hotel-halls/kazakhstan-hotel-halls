@@ -96,7 +96,8 @@ header.top p{margin:12px 0 0;color:var(--on-brand);opacity:.82;max-width:62ch}
 .day::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--free)}
 .day.hold{background:var(--hold-soft)}.day.hold::after{background:var(--hold)}
 .day.booked{background:var(--busy-soft);color:var(--muted);text-decoration:line-through}.day.booked::after{background:var(--busy)}
-.day.unknown{background:var(--sunk)}.day.unknown::after{display:none}
+.day.unknown{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}.day.unknown::after{display:none}
+.day.unknown:hover{box-shadow:inset 0 0 0 1px var(--accent)}
 .day.past,.day.blank{background:transparent;color:var(--line);cursor:default;text-decoration:none}
 .day.past::after,.day.blank::after{display:none}
 .day.sel{outline:2px solid var(--accent);outline-offset:1px;font-weight:600}
@@ -301,7 +302,7 @@ a.btn{text-decoration:none;display:inline-block}
             </div>
             <div class="grid7" id="dows"></div>
             <div class="grid7" id="days"></div>
-            <div class="legend">
+            <div class="legend" id="legend">
               <span><i style="background:var(--free)"></i>Свободно</span>
               <span><i style="background:var(--hold)"></i>Предварительная бронь</span>
               <span><i style="background:var(--busy)"></i>Занято</span>
@@ -622,6 +623,7 @@ $("dows").innerHTML = DOW.map(d=>`<div class="dow">${d}</div>`).join("");
 const maxView = new Date(today.getFullYear(), today.getMonth()+18, 1);
 
 function renderCal(){
+  $("legend").hidden = S.calState === "off";
   const y = S.viewY, m = S.viewM;
   $("mTitle").textContent = MONTHS[m]+" "+y;
   $("prevM").disabled = (y===today.getFullYear() && m===today.getMonth());
@@ -658,7 +660,7 @@ function renderForecast(){
   for (let i=0; i<365 && next.length<5; i++){ const ds=iso(c); if (statusOf(ds,S.hall)==="free") next.push(ds); c.setDate(c.getDate()+1); }
   const pct = v => total ? (v/total*100).toFixed(1)+"%" : "0%";
   if (S.calState === "off"){
-    $("forecast").innerHTML = `<h4>Занятость</h4><p class="note">Календарь занятости сейчас недоступен. Доступность даты уточните у менеджера — контакты внизу страницы.</p>`;
+    $("forecast").innerHTML = `<h4>Как бронируем</h4><p class="note">Выберите удобную дату — менеджер подтвердит, свободен ли зал, и поставит предварительную бронь.</p><p class="note">В пятницу, субботу и воскресенье действует тариф выходного дня.</p>`;
     return;
   }
   $("forecast").innerHTML = `
@@ -920,7 +922,7 @@ async function loadCalendar(){
     });
     S.cal = cal; S.calState = "ok"; $("calNote").hidden = true;
   } catch(e){
-    S.calState = "off"; $("calNote").textContent = "Календарь сейчас недоступен. Доступность даты уточните у менеджера."; $("calNote").className="note warn"; $("calNote").hidden=false;
+    S.calState = "off";
   }
   clearTimeout(timer);
   if (S.date && statusOf(S.date,S.hall) !== "free" && statusOf(S.date,S.hall) !== "unknown") S.date = null;
