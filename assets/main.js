@@ -4,7 +4,8 @@
   var TOURS = {
     gb: 'https://pano3d.kz/Kahazakhstan_VR/#media-name=%C2%ABGrand%20Ballroom%C2%BB&yaw=-106.51&pitch=-6.92&fov=130.00',
     gp: 'https://pano3d.kz/Kahazakhstan_VR/#media-name=%C2%ABGrand%20Palace%C2%BB&yaw=0.46&pitch=0.00&fov=110.00',
-    eh: TOUR, ae: TOUR
+    eh: 'https://pano3d.kz/Kahazakhstan_VR/#media-name=%C2%ABElegant%20hall%C2%BB&yaw=-15.44&pitch=-5.32&fov=110.00',
+    ae: TOUR
   };
 
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
