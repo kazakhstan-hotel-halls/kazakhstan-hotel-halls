@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Стоимость и расчёт — залы Kazakhstan Hotel</title>
+<meta name="description" content="Прайс 2026 на аренду конференц-залов отеля Kazakhstan в Алматы, конференц-пакеты, кофе-брейки, банкетное меню и онлайн-калькулятор стоимости мероприятия.">
+<meta name="theme-color" content="#0B2E2B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg width="26" height="34" viewBox="0 0 26 34" fill="none" stroke="#C99A6B" stroke-width="1.2" aria-hidden="true"><path d="M3 1 L3 18 Q3 26 11 30 L11 33"/><path d="M6 3 L6 17"/><path d="M9 5 L9 17"/><path d="M12 8 L12 22"/><path d="M15 11 L15 22"/><path d="M18 9 L18 20"/><path d="M21 7 L21 18 Q21 25 13 29"/><path d="M24 5 L24 15"/></svg>
+      <span><b>KAZAKHSTAN</b><small>HOTEL ALMATY</small></span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="index.html">Залы</a>
+      <a href="#prices">Прайс</a>
+      <a href="#packages">Пакеты</a>
+      <a href="index.html#contacts">Контакты</a>
+      <a class="btn btn-gold" href="#calc">Рассчитать</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="dark">
+    <div class="wrap row" style="gap:32px;align-items:flex-end;justify-content:space-between;padding-top:40px;padding-bottom:64px">
+      <div class="stack" style="gap:16px;flex:1 1 520px;min-width:0">
+        <p class="eyebrow">Прайс 2026</p>
+        <h1 class="serif" style="font-size:clamp(38px,4.6vw,60px);line-height:1.05">Стоимость и расчёт мероприятия</h1>
+        <p class="lead" style="font-size:17px;max-width:620px">Аренда залов, конференц-пакеты, кофе-брейки, банкетное меню и напитки. Соберите мероприятие в калькуляторе — итог посчитается сразу.</p>
+      </div>
+      <p class="lead" style="font-size:14px;flex:0 1 320px">Цены указаны без НДС 16%. Расчёт предварительный, бронь подтверждает менеджер.</p>
+    </div>
+  </section>
+
+  <section id="prices">
+    <div class="wrap stack" style="gap:24px;padding-top:72px;padding-bottom:24px">
+      <h2 class="h2">Аренда залов</h2>
+      <div class="table-box">
+        <table style="min-width:860px">
+          <thead><tr><th scope="col">Зал</th><th scope="col">Гостей</th><th scope="col">Площадь</th><th scope="col">4 часа</th><th scope="col">8 часов</th><th scope="col">Пт, сб, вс</th><th scope="col">Оборудование</th></tr></thead>
+          <tbody id="rentBody"></tbody>
+        </table>
+      </div>
+      <div class="price-cards">
+        <div class="card"><span class="eyebrow">Банкет · будние дни</span><b>2 000 000 ₸</b><span class="lead" style="font-size:14px">Аренда зала + оборудование</span></div>
+        <div class="card"><span class="eyebrow">Банкет · пт, сб, вс</span><b>3 000 000 ₸</b><span class="lead" style="font-size:14px">Аренда зала + оборудование</span></div>
+        <div class="card"><span class="eyebrow">Банкетное меню</span><b>от 50 000 ₸</b><span class="lead" style="font-size:14px">за гостя</span></div>
+        <div class="card"><span class="eyebrow">Алкоголь, безлимит</span><b>от 12 000 ₸</b><span class="lead" style="font-size:14px">за гостя</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <div class="wrap stack" style="gap:24px;padding-top:48px;padding-bottom:24px">
+      <h2 class="h2">Конференц-пакеты на полный день</h2>
+      <div class="table-box">
+        <table style="min-width:720px">
+          <thead id="pkgHead"></thead>
+          <tbody id="pkgBody"></tbody>
+        </table>
+      </div>
+      <div id="pkgCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px"></div>
+    </div>
+  </section>
+
+  <section id="calc">
+    <div class="wrap stack" style="gap:28px;padding-top:72px;padding-bottom:88px">
+      <div class="stack" style="gap:10px"><p class="eyebrow">Калькулятор</p><h2 class="h2">Рассчитайте ваше мероприятие</h2></div>
+      <div class="calc">
+        <div class="calc-main">
+          <div class="card"><h3>1. Зал</h3><div class="hall-opts" id="hallOpts" role="group" aria-label="Зал"></div></div>
+          <div class="card"><h3>2. Дата и формат</h3><div id="format" class="stack" style="gap:16px"></div></div>
+          <div class="card">
+            <h3>3. Гости</h3>
+            <div class="guests">
+              <button type="button" class="icon-btn" id="gDec" aria-label="Меньше гостей">−</button>
+              <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)"><input type="number" id="guests" min="1" max="1000" inputmode="numeric"> гостей</label>
+              <button type="button" class="icon-btn" id="gInc" aria-label="Больше гостей">+</button>
+              <span id="capText" style="font-size:14px;color:var(--muted)"></span>
+            </div>
+            <p class="note" id="guestWarn" hidden></p>
+          </div>
+          <div class="card"><h3 id="menuTitle">4. Питание и напитки — по желанию</h3><div id="menu" class="stack" style="gap:20px"></div></div>
+        </div>
+        <aside class="summary" id="summary" aria-label="Итог расчёта" aria-live="polite"></aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap"><span>Kazakhstan Hotel · Алматы, пр. Достык 52/2</span><span><a href="booking.html">Календарь и онлайн-заявка</a> · <a href="index.html">← Вернуться к залам</a></span></div>
+</footer>
+
+<script src="assets/prices.js"></script>
+</body>
+</html>
