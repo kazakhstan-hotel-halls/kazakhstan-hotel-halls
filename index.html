@@ -2,935 +2,162 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Конференц-залы отеля «Казахстан» — расчёт и бронирование</title>
-<meta name="description" content="Конференц-залы отеля «Казахстан» в Алматы: цены, меню, свободные даты и предварительное бронирование.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Залы Kazakhstan Hotel — конференции, банкеты, свадьбы в Алматы</title>
+<meta name="description" content="Конференц-залы и банкетные залы отеля Kazakhstan в Алматы: Grand Ballroom, Grand Palace, Elegant Hall, Altyn Emel, переговорные Abay и Ulytau. Фото, планы, рассадка, 3D-тур и расчёт стоимости.">
+<meta property="og:title" content="Залы Kazakhstan Hotel, Алматы">
+<meta property="og:description" content="Конференции, банкеты, свадьбы и переговоры. Фото, планы залов, 3D-тур и калькулятор стоимости.">
+<meta property="og:image" content="assets/img/gb-1.jpg">
+<meta name="theme-color" content="#0B2E2B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<style>
-html{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-/* Layout: two columns — steps on the left (hall → date → package → guests → request), a sticky live estimate on the right; one column on phones with a bottom total bar. */
-:root{
-  --bg:#F7F4EF; --surface:#FFFFFF; --sunk:#EFE9E0; --ink:#13272A; --muted:#5C6967; --line:#DED6CA;
-  --accent:#A2683A; --accent-ink:#FFFFFF; --accent-soft:#F4E9DD;
-  --brand:#13272A; --on-brand:#F1E6D6; --brand-accent:#C9945F;
-  --free:#2F7D5B; --free-soft:#E3F1EA; --hold:#A86A12; --hold-soft:#FBEFD9; --busy:#B23B3B; --busy-soft:#F7E1E1;
-  --f-display:"Cormorant Garamond","Cormorant",Georgia,"Times New Roman",serif;
-  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --r:10px;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0E1A1C; --surface:#152426; --sunk:#1D3032; --ink:#ECE5DA; --muted:#9DA8A5; --line:#2A3E40;
-  --accent:#D49C66; --accent-ink:#1A1209; --accent-soft:#2D2820;
-  --brand:#0A1416; --on-brand:#EFE3D2; --brand-accent:#D49C66;
-  --free:#5CC496; --free-soft:#163126; --hold:#E3A955; --hold-soft:#33281A; --busy:#E57B7B; --busy-soft:#3A1F22; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0E1A1C; --surface:#152426; --sunk:#1D3032; --ink:#ECE5DA; --muted:#9DA8A5; --line:#2A3E40;
-  --accent:#D49C66; --accent-ink:#1A1209; --accent-soft:#2D2820;
-  --brand:#0A1416; --on-brand:#EFE3D2; --brand-accent:#D49C66;
-  --free:#5CC496; --free-soft:#163126; --hold:#E3A955; --hold-soft:#33281A; --busy:#E57B7B; --busy-soft:#3A1F22; color-scheme:dark}
-
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 96px}
-h1,h2,h3{font-family:var(--f-display);font-weight:500;text-wrap:balance;margin:0}
-button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.num{font-variant-numeric:tabular-nums}
-.wrap{max-width:1180px;margin:0 auto}
-
-header.top{padding-block:44px 32px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between;background:var(--brand);color:var(--on-brand);box-shadow:0 0 0 100vmax var(--brand);clip-path:inset(0 -100vmax)}
-.eyebrow{font-family:var(--f-body);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand-accent)}
-header.top h1{font-size:clamp(32px,5vw,52px);font-weight:500;line-height:1.05;margin-top:10px;letter-spacing:.01em}
-header.top p{margin:12px 0 0;color:var(--on-brand);opacity:.82;max-width:62ch}
-.who{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--sunk);font-size:12.5px;color:var(--muted)}
-.chip.mgr{background:var(--brand-accent);color:var(--brand)}
-
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:36px;padding-top:28px;align-items:start}
-@media (max-width:920px){.layout{grid-template-columns:minmax(0,1fr)}}
-
-.step{padding-block:8px 32px;display:grid;gap:16px}
-.step + .step{border-top:1px solid var(--line);padding-top:28px}
-.step-h{display:flex;gap:14px;align-items:baseline}
-.step-n{font-family:var(--f-display);font-size:13px;color:var(--accent);letter-spacing:.1em;min-width:22px}
-.step-h h2{font-size:30px;line-height:1.1}
-.step-h .hint{margin-left:auto;font-size:13px;color:var(--muted)}
-
-/* halls */
-.halls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-@media (max-width:620px){.halls{grid-template-columns:minmax(0,1fr)}}
-.hall{all:unset;box-sizing:border-box;cursor:pointer;display:grid;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .15s}
-.hall:hover{border-color:var(--muted)}
-.hall[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-.hall:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.hall img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--sunk)}
-.hall .b{padding:14px 16px 16px;display:grid;gap:6px}
-.hall h3{font-size:22px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
-.hall h3 small{font-family:var(--f-body);font-size:12.5px;color:var(--muted)}
-.hall .meta{font-size:13.5px;color:var(--muted)}
-.hall .price{font-size:14px}
-.hall .price b{font-weight:600}
-
-.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-@media (max-width:620px){.details{grid-template-columns:minmax(0,1fr)}}
-.details h4{margin:0 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.details ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:14px}
-.details .row{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding-block:4px;border-bottom:1px dashed var(--line)}
-.details .row:last-child{border-bottom:0}
-.details .row span:last-child{text-align:right}
-.thumbs{display:flex;gap:8px;grid-column:1/-1;overflow-x:auto}
-.thumbs img{height:84px;border-radius:6px;flex:none}
-
-/* calendar */
-.cal-wrap{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:16px}
-@media (max-width:700px){.cal-wrap{grid-template-columns:minmax(0,1fr)}}
-.cal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
-.cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
-.cal-head b{font-family:var(--f-display);font-weight:400;font-size:19px;text-transform:capitalize}
-.icon-btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;width:34px;height:34px;cursor:pointer;display:grid;place-items:center}
-.icon-btn:disabled{opacity:.35;cursor:default}
-.grid7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
-.dow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:center;padding-bottom:4px}
-.day{border:0;border-radius:7px;aspect-ratio:1/1;min-height:36px;cursor:pointer;display:grid;place-items:center;position:relative;font-variant-numeric:tabular-nums;font-size:14px;background:var(--free-soft);color:var(--ink)}
-.day::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:var(--free)}
-.day.hold{background:var(--hold-soft)}.day.hold::after{background:var(--hold)}
-.day.booked{background:var(--busy-soft);color:var(--muted);text-decoration:line-through}.day.booked::after{background:var(--busy)}
-.day.unknown{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}.day.unknown::after{display:none}
-.day.unknown:hover{box-shadow:inset 0 0 0 1px var(--accent)}
-.day.past,.day.blank{background:transparent;color:var(--line);cursor:default;text-decoration:none}
-.day.past::after,.day.blank::after{display:none}
-.day.sel{outline:2px solid var(--accent);outline-offset:1px;font-weight:600}
-.day.today{font-weight:600}
-.day:disabled{cursor:default}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:12.5px;color:var(--muted)}
-.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
-.forecast{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px;align-content:start}
-.forecast h4{margin:0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.fc-big{font-family:var(--f-display);font-size:34px;font-weight:300;line-height:1}
-.fc-big small{font-size:14px;color:var(--muted);font-family:var(--f-body)}
-.bar{height:6px;border-radius:3px;background:var(--sunk);overflow:hidden;display:flex}
-.bar span{display:block;height:100%}
-.next-list{display:grid;gap:4px}
-.next-list button{all:unset;cursor:pointer;display:flex;justify-content:space-between;font-size:13.5px;padding:5px 8px;border-radius:6px;background:var(--free-soft)}
-.next-list button:hover{outline:1px solid var(--free)}
-.next-list button:focus-visible{outline:2px solid var(--accent)}
-.note{font-size:13px;color:var(--muted)}
-.note.warn{color:var(--hold)}
-
-/* packages */
-.pkgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-@media (max-width:620px){.pkgs{grid-template-columns:minmax(0,1fr)}}
-.pkg{all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;align-content:start}
-.pkg[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-.pkg:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.pkg-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.pkg-top h3{font-size:21px}
-.pkg-top .p{font-weight:600;font-variant-numeric:tabular-nums}
-.pkg-top .p small{font-weight:400;color:var(--muted)}
-.menu{display:grid;gap:8px;font-size:13.5px}
-.menu div b{display:block;font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
-.menu div span{color:var(--muted)}
-
-/* menu builder (Алтын Емель, Elegant Hall) */
-.builder{display:grid;gap:16px}
-.b-block{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:8px}
-.b-block h4{margin:0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.seg{display:flex;flex-wrap:wrap;gap:8px}
-.seg button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 14px;cursor:pointer;display:grid;text-align:left;gap:2px;min-width:130px}
-.seg button b{font-weight:500}
-.seg button span{font-size:13px;color:var(--muted)}
-.seg button[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);background:var(--accent-soft)}
-.mi{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
-.mi:first-of-type{border-top:0}
-.mi-main{min-width:0;display:grid;gap:2px}
-.mi-name{font-weight:500}
-.mi.on .mi-name{color:var(--accent)}
-.mi-price{font-size:14px}
-.mi-price small{color:var(--muted)}
-.mi details{font-size:13.5px;color:var(--muted)}
-.mi summary{cursor:pointer;width:max-content;font-size:13px;color:var(--accent)}
-.mi details p{margin:4px 0 0;max-width:62ch}
-.stepper.sm{flex:none}
-.stepper.sm button{width:34px;height:34px}
-.stepper.sm output{width:34px;text-align:center;font-variant-numeric:tabular-nums}
-.chk{flex:none;display:flex;gap:6px;align-items:center;font-size:14px;cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:6px 10px}
-.chk input{accent-color:var(--accent)}
-.b-block .toggle input,.mgr-panel .toggle input{accent-color:var(--accent)}
-
-/* guests */
-.guests{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.guests input[type=range]{flex:1 1 220px;accent-color:var(--accent)}
-.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.stepper button{border:0;background:var(--sunk);width:38px;height:40px;cursor:pointer;font-size:18px}
-.stepper input{width:76px;height:40px;border:0;text-align:center;background:var(--surface);font-variant-numeric:tabular-nums;font-size:16px}
-.presets{display:flex;gap:6px;flex-wrap:wrap}
-.presets button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 12px;cursor:pointer;font-size:13px}
-.presets button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-
-/* form */
-form.req{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-@media (max-width:620px){form.req{grid-template-columns:minmax(0,1fr)}}
-.fld{display:grid;gap:4px;min-width:0}
-.fld.full{grid-column:1/-1}
-.fld label{font-size:12.5px;color:var(--muted)}
-.fld input,.fld textarea{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);width:100%}
-.fld textarea{min-height:76px;resize:vertical}
-.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-.btn{border:0;border-radius:8px;padding:11px 18px;background:var(--accent);color:var(--accent-ink);font-weight:500;cursor:pointer}
-.btn:disabled{opacity:.5;cursor:default}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.btn.sm{padding:6px 10px;font-size:13px}
-.msg{grid-column:1/-1;border-radius:8px;padding:12px 14px;font-size:14px}
-.msg.ok{background:var(--free-soft)}
-.msg.err{background:var(--busy-soft)}
-.msg pre{white-space:pre-wrap;font-family:var(--f-body);font-size:13.5px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px;margin:10px 0 8px;user-select:all}
-
-/* estimate */
-aside.est{position:sticky;top:max(16px,env(safe-area-inset-top,0px));background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:12px}
-@media (max-width:920px){aside.est{position:static}}
-.est h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body);font-weight:500}
-.est .sumline{font-size:14px;color:var(--muted)}
-.est .sumline b{color:var(--ink);font-weight:500}
-.lines{display:grid;gap:6px;font-size:14px}
-.ln{display:flex;justify-content:space-between;gap:12px}
-.ln span:first-child{color:var(--muted)}
-.ln span:last-child{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
-.ln.free span:last-child{color:var(--free)}
-.ln.minus span:last-child{color:var(--busy)}
-.ln.sub{border-top:1px solid var(--line);padding-top:6px}
-.total{border-top:2px solid var(--ink);padding-top:10px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.total span:first-child{font-size:13px;letter-spacing:.1em;text-transform:uppercase}
-.total b{font-family:var(--f-display);font-size:34px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
-.pp{font-size:13.5px;background:var(--sunk);border-radius:8px;padding:10px 12px;display:grid;gap:4px}
-.pp .ln span:first-child{color:var(--muted)}
-
-.mobile-bar{display:none}
-@media (max-width:920px){
-  .mobile-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border-top:1px solid var(--line);
-    padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-  .mobile-bar b{font-family:var(--f-display);font-size:22px;font-weight:400}
-  .mobile-bar small{display:block;font-size:12px;color:var(--muted)}
-}
-
-/* manager */
-.mgr-panel{margin-top:12px;background:var(--surface);border:1px solid var(--accent);border-radius:var(--r);padding:16px;display:grid;gap:12px}
-.mgr-panel h2{font-size:22px}
-.toggle{display:flex;gap:8px;align-items:center;font-size:14px}
-.reqs{display:grid;gap:8px}
-.reqc{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:6px;font-size:14px}
-.reqc .top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
-.reqc .top b{font-weight:600}
-.pill{font-size:12px;border-radius:999px;padding:2px 9px}
-.pill.new{background:var(--accent-soft);color:var(--accent)}
-.pill.hold{background:var(--hold-soft);color:var(--hold)}
-.pill.booked{background:var(--free-soft);color:var(--free)}
-.pill.declined{background:var(--sunk);color:var(--muted)}
-.reqc .acts{display:flex;flex-wrap:wrap;gap:6px}
-.reqc .contact{color:var(--muted);word-break:break-word}
-
-footer{border-top:1px solid var(--line);margin-top:24px;padding-block:24px;display:flex;flex-wrap:wrap;gap:16px 40px;font-size:13.5px;color:var(--muted)}
-footer b{color:var(--ink);font-weight:500}
-
-/* halls v2 */
-.sub-h{grid-column:1/-1;margin:8px 0 -4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
-.halls{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (min-width:1100px){.halls{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.halls-sm{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-@media (max-width:620px){.halls-sm{grid-template-columns:minmax(0,1fr)}}
-.hall.sm .ph{aspect-ratio:16/6}
-.hall.sm .ph span{font-size:24px}
-.ph{width:100%;aspect-ratio:16/9;max-width:100%;display:grid;place-content:center;justify-items:center;gap:2px;background:var(--brand);color:var(--on-brand);text-align:center}
-.ph span{font-family:var(--f-display);font-size:30px;font-weight:500;letter-spacing:.04em}
-.ph small{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-accent)}
-.hall h3{font-size:24px}
-dl.tech{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:14px}
-dl.tech dt{color:var(--muted)}
-dl.tech dd{margin:0}
-.details .row span:first-child{color:var(--muted)}
-/* builder v2 */
-.seg.wide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (max-width:520px){.seg.wide{grid-template-columns:minmax(0,1fr)}}
-.seg.wide button{min-width:0}
-.cat-h{font-size:24px;margin-top:6px}
-details.grp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:0 16px}
-details.grp > summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;font-weight:500}
-details.grp > summary::-webkit-details-marker{display:none}
-details.grp > summary::after{content:"+";font-size:20px;color:var(--muted);line-height:1}
-details.grp[open] > summary::after{content:"−"}
-details.grp > summary .cnt{margin-left:auto;font-size:12.5px;font-weight:400;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 10px}
-details.grp[open]{padding-bottom:6px}
-details.grp .mi:first-of-type{border-top:1px solid var(--line)}
-.mi-ctl{flex:none;display:grid;justify-items:end;gap:4px}
-.mi-sum{font-size:13px;color:var(--accent)}
-.stepper.qty input{width:56px;height:34px;border:0;text-align:center;background:var(--surface)}
-ul.mgrs{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:2px}
-ul.mgrs li{display:flex;gap:10px;flex-wrap:wrap}
-footer a{color:inherit}
-a.btn{text-decoration:none;display:inline-block}
-.wa{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div>
-      <div class="eyebrow">Отель «Казахстан» · Алматы</div>
-      <h1>Конференц-залы: расчёт и бронирование</h1>
-      <p>Шесть залов: от переговорной на 12 человек до Grand Ballroom на 800 гостей. Выберите зал, свободную дату, формат и меню — стоимость посчитается сразу. Отправьте заявку, и менеджер поставит предварительную бронь.</p>
+
+<!-- Intro -->
+<div class="intro" id="intro" role="dialog" aria-label="Заставка Kazakhstan Hotel">
+  <img src="assets/img/gb-3.jpg" alt="">
+  <img src="assets/img/gb-2.jpg" alt="">
+  <img src="assets/img/gb-1.jpg" alt="">
+  <img src="assets/img/gb-4.jpg" alt="">
+  <img src="assets/img/gb-5.jpg" alt="">
+  <div class="vignette"></div>
+  <button type="button" class="skip" data-close>Пропустить</button>
+  <div class="center">
+    <svg class="logo" width="84" height="110" viewBox="0 0 26 34" fill="none" stroke="#C99A6B" stroke-width="0.7" stroke-linecap="round" aria-hidden="true"><path pathLength="1" d="M3 1 L3 18 Q3 26 11 30 L11 33"/><path pathLength="1" d="M6 3 L6 17"/><path pathLength="1" d="M9 5 L9 17"/><path pathLength="1" d="M12 8 L12 22"/><path pathLength="1" d="M15 11 L15 22"/><path pathLength="1" d="M18 9 L18 20"/><path pathLength="1" d="M21 7 L21 18 Q21 25 13 29"/><path pathLength="1" d="M24 5 L24 15"/></svg>
+    <div class="stack" style="align-items:center;gap:10px">
+      <span class="word">KAZAKHSTAN</span>
+      <span class="sub">HOTEL ALMATY</span>
+      <span class="gline"></span>
     </div>
-    <div class="who" id="who"></div>
-  </header>
-
-  <div class="layout">
-    <main>
-      <section class="step" aria-labelledby="s1">
-        <div class="step-h"><span class="step-n">01</span><h2 id="s1">Зал</h2></div>
-        <div class="halls" id="halls"></div>
-        <div class="details" id="details"></div>
-      </section>
-
-      <section class="step" aria-labelledby="s2">
-        <div class="step-h"><span class="step-n">02</span><h2 id="s2">Дата</h2><span class="hint" id="dateHint"></span></div>
-        <div class="cal-wrap">
-          <div class="cal">
-            <div class="cal-head">
-              <button class="icon-btn" id="prevM" aria-label="Предыдущий месяц">‹</button>
-              <b id="mTitle"></b>
-              <button class="icon-btn" id="nextM" aria-label="Следующий месяц">›</button>
-            </div>
-            <div class="grid7" id="dows"></div>
-            <div class="grid7" id="days"></div>
-            <div class="legend" id="legend">
-              <span><i style="background:var(--free)"></i>Свободно</span>
-              <span><i style="background:var(--hold)"></i>Предварительная бронь</span>
-              <span><i style="background:var(--busy)"></i>Занято</span>
-            </div>
-            <p class="note" id="calNote" hidden></p>
-          </div>
-          <div class="forecast" id="forecast"></div>
-        </div>
-      </section>
-
-      <section class="step" aria-labelledby="s3">
-        <div class="step-h"><span class="step-n">03</span><h2 id="s3">Пакет и меню</h2><span class="hint" id="s3hint">Цена за гостя, без НДС</span></div>
-        <div class="pkgs" id="pkgs"></div>
-      </section>
-
-      <section class="step" aria-labelledby="s4">
-        <div class="step-h"><span class="step-n">04</span><h2 id="s4">Гости</h2></div>
-        <div class="guests">
-          <div class="stepper">
-            <button type="button" id="gMinus" aria-label="Меньше">−</button>
-            <input id="gNum" type="number" inputmode="numeric" min="1" max="800" step="1" value="250" aria-label="Количество гостей">
-            <button type="button" id="gPlus" aria-label="Больше">+</button>
-          </div>
-          <input id="gRange" type="range" min="1" max="800" step="10" value="250" aria-label="Количество гостей, ползунок">
-          <div class="presets" id="presets"></div>
-          <p class="note warn" id="capNote" hidden></p>
-        </div>
-      </section>
-
-      <section class="step" aria-labelledby="s5" id="reqSection">
-        <div class="step-h"><span class="step-n">05</span><h2 id="s5">Заявка на предварительную бронь</h2></div>
-        <form class="req" id="reqForm" novalidate>
-          <div class="fld"><label for="fName">Контактное лицо *</label><input id="fName" autocomplete="name" required></div>
-          <div class="fld"><label for="fCompany">Компания</label><input id="fCompany" autocomplete="organization"></div>
-          <div class="fld"><label for="fPhone">Телефон *</label><input id="fPhone" type="tel" autocomplete="tel" required placeholder="+7"></div>
-          <div class="fld"><label for="fEmail">Email</label><input id="fEmail" type="email" autocomplete="email"></div>
-          <div class="fld" style="position:absolute;left:-9999px" aria-hidden="true"><label for="fWebsite">Сайт</label><input id="fWebsite" tabindex="-1" autocomplete="off"></div>
-          <div class="fld full"><label for="fComment">Комментарий</label><textarea id="fComment" placeholder="Формат мероприятия, время начала, рассадка"></textarea></div>
-          <div class="form-foot">
-            <span class="note" id="formSummary"></span>
-            <button class="btn" id="submitBtn" type="submit">Отправить заявку</button>
-          </div>
-          <div class="msg" id="formMsg" hidden></div>
-        </form>
-      </section>
-
-    </main>
-
-    <aside class="est" aria-label="Расчёт стоимости" id="est"></aside>
+    <p class="tag late" data-at="2">Легендарное пространство для значимых событий</p>
+    <p class="halls late" data-at="3">Grand Ballroom · Grand Palace · Elegant Hall · Altyn Emel</p>
+    <button type="button" class="btn btn-gold late" data-at="4" data-close>Войти на сайт</button>
   </div>
-
-  <footer>
-    <div><b>Бронирование залов</b>
-      <ul class="mgrs">
-        <li><a class="num" href="tel:+77024782182">+7 702 478 21 82</a></li>
-        <li><a class="num" href="tel:+77477422744">+7 747 742 27 44</a></li>
-        <li><a class="num" href="tel:+77021221087">+7 702 122 10 87</a></li>
-      </ul>
-    </div>
-    <div><b>Отель «Казахстан»</b><br>Алматы, пр. Достык, 52/2<br><span class="num">+7 727 291 91 01 · +7 727 291 96 00</span><br>info@kazakhstanhotel.kz</div>
-    <div>Цены указаны без НДС 16%, итог — с НДС. Расчёт предварительный, бронь подтверждает менеджер.</div>
-  </footer>
+  <div class="cap late" data-at="1">Grand Ballroom · 820 м² · до 700 гостей</div>
+  <div class="prog"></div>
 </div>
 
-<div class="mobile-bar" id="mbar">
-  <div><small id="mbarSub"></small><b class="num" id="mbarTotal"></b></div>
-  <button class="btn" id="mbarBtn" type="button">К заявке</button>
-</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="26" height="34" viewBox="0 0 26 34" fill="none" stroke="#C99A6B" stroke-width="1.2" aria-hidden="true"><path d="M3 1 L3 18 Q3 26 11 30 L11 33"/><path d="M6 3 L6 17"/><path d="M9 5 L9 17"/><path d="M12 8 L12 22"/><path d="M15 11 L15 22"/><path d="M18 9 L18 20"/><path d="M21 7 L21 18 Q21 25 13 29"/><path d="M24 5 L24 15"/></svg>
+      <span><b>KAZAKHSTAN</b><small>HOTEL ALMATY</small></span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#halls">Залы</a>
+      <a href="#compare">Вместимость</a>
+      <a href="#tour">3D-тур</a>
+      <a href="prices.html">Стоимость</a>
+      <a href="#contacts">Контакты</a>
+      <a class="btn btn-gold" href="#contacts">Забронировать</a>
+    </nav>
+  </div>
+</header>
 
-<script>
-(function(){
-/* ===== НАСТРОЙКА: ссылка веб-приложения Google Apps Script (шаг 3–4 инструкции) ===== */
-const API_URL = "ВСТАВЬТЕ_ССЫЛКУ_СЮДА";
-/* ===================================================================================== */
-/* =====================================================================
-   ПРАЙС. Все цены — без НДС, как в прайсе «Вместимость и расценки 2026».
-   Чтобы поменять цену — исправьте число и сохраните файл.
-   ===================================================================== */
-const VAT = 0.16;           // НДС 16%
-const PKG_DISCOUNT = 0;     // скидка на конференц-пакеты: 0 — нет, 0.10 — 10%
-
-/* Залы.
-   rent: аренда за 4 часа (h4), 8 часов (h8) и в выходные пт–вс (we).
-   equip: оборудование — за 4/8 часов или одной суммой (flat).
-   pkg: цены конференц-пакетов за гостя и минимум гостей.
-   buffetMin: минимум гостей для шведского стола. */
-const HALLS = {
-  gb: { name:"Grand Ballroom", cap:[150,800], area:"900 м²", where:"1 этаж, вход с пр. Достык",
-        rent:{h4:1000000, h8:1500000, we:5000000}, equip:{h4:1000000, h8:1500000},
-        pkg:{standard:32000, premium:40000, min:200}, buffetMin:250,
-        photos:["gb_banquet.jpg","gb_theatre.jpg","gb_stage.jpg"],
-        tech:[["LED-экран","два боковых p4.81, 4,5 × 3,2 м; LED-полоски — 6 шт."],["Звук","8 кВт, Dynacord Cobra 2: top — 4, sub — 4; мониторы и прострелы Mackie Jump — по 2 шт."],["Свет","PR Lighting beam 230 — 10 шт., LED wash 36/10 — 21 шт., Litelees K10 — 2 шт., матрикс 5×1 — 10 шт."]] },
-  gp: { name:"Grand Palace", cap:[100,500], area:"650 м²", where:"Вход с ул. Зенкова",
-        rent:{h4:850000, h8:1200000, we:1500000}, equip:{h4:350000, h8:600000},
-        pkg:{standard:20000, premium:25000, min:150}, buffetMin:100,
-        photos:["gp.jpg"],
-        tech:[["LED P6","4,5 × 3,8 м"],["Звук","Boway: top — 4, sub — 2; мониторы Shure — 2 шт.; прострелы — 2 шт."],["Свет","LED wash 36/10 — 6 шт., PR beam 230 — 2 шт."]] },
-  eh: { name:"Elegant Hall", cap:[50,220], area:"230 м² + фойе 100 м²", where:"Вход с ул. Зенкова, 2 этаж",
-        rent:{h4:400000, h8:750000, we:750000}, equip:{flat:100000},
-        pkg:{standard:25000, premium:30000, min:50}, buffetMin:50,
-        photos:["eh_1.jpg","eh_2.jpg"],
-        tech:[["LED-экран","2 шт., 2,5 × 2 м"],["Звук","аудиосистема 100 В, потолочные динамики по залу"],["Микрофоны","беспроводные — 2 шт."]] },
-  ae: { name:"Алтын Емель", cap:[30,200], area:"170 м² + фойе 120 м²", where:"1 этаж",
-        rent:{h4:300000, h8:500000, we:500000}, equip:{flat:50000},
-        pkg:{standard:20000, premium:25000, min:50}, buffetMin:50,
-        photos:["ae_1.jpg","ae_2.jpg"],
-        tech:[["LED-экран","2,5 × 2 м"],["Звук","4 колонки по залу, 300 Вт"],["Микрофоны","беспроводные Shure — 2 шт."]] },
-  abai:    { name:"Abai",    cap:[1,40], area:"60 м²", where:"Переговорная", rent:{h4:200000, h8:300000, we:300000}, photos:["abai_2.jpg","abai_1.jpg","abai_3.jpg","abai_4.jpg"], tech:[] },
-  ulytau:  { name:"Ulytau",  cap:[1,12], area:"30 м²", where:"Переговорная", rent:{h4:200000, h8:300000, we:300000}, photos:["ulytau_1.jpg","ulytau_2.jpg","ulytau_3.jpg","ulytau_4.jpg","ulytau_5.jpg","ulytau_6.jpg","ulytau_7.jpg"], tech:[] }
-};
-
-const PKGS = {
-  standard:{ name:"Standard full day", menu:[
-    ["Конференц-зал","Минеральная вода без газа, канцелярские принадлежности"],
-    ["Утренний кофе-брейк","Чай, кофе, печенье в ассортименте, канапе с сёмгой и творожным сыром, сигара-бёрек"],
-    ["Обед","Бизнес-ланч, чай, кофе, напитки (соки, вода)"],
-    ["Послеобеденный кофе-брейк","Ассорти печенья, мини-круассаны, даниш с вишней, футж-кекс, канапе с ростбифом"]]},
-  premium:{ name:"Premium full day", menu:[
-    ["Конференц-зал","Минеральная вода без газа, канцелярские принадлежности"],
-    ["Приветственный кофе-брейк","Чай, фильтр-кофе, молоко, мёд, лимон, ассорти печенья"],
-    ["Утренний кофе-брейк","Чай, фильтр-кофе, молоко, мёд, лимон, ассорти печенья, мини-круассаны, даниш с вишней, футж-кекс, канапе с сёмгой, сигара-бёрек, самса с говядиной"],
-    ["Обед","Шведский стол, чай, кофе, напитки (соки, вода)"],
-    ["Послеобеденный кофе-брейк","Чай, фильтр-кофе, молоко, мёд, лимон, соки, минеральная вода, ассорти печенья, футж-кекс, мини-шот с шоколадным муссом, макаруны, мраморный кекс, ананас на шпажках, канапе с лососем, пачанга-бёрек"]]}
-};
-
-/* Меню. per: "guest" — за гостя, "piece" — за штуку, "plate" — за тарелку, "station" — за станцию.
-   max — сколько подач можно выбрать; step — шаг количества; min — минимальный заказ. */
-const MENU = [
-  {id:"cb1", g:"Кофе-брейки", name:"Кофе-брейк № 1", price:3600, per:"guest", max:4,
-   desc:"Чай, молоко, мёд, лимон, горячий фильтр-кофе. Печенье: кофейное, курабье, безе с арахисом."},
-  {id:"cb2", g:"Кофе-брейки", name:"Кофе-брейк № 2", price:5500, per:"guest", max:4,
-   desc:"Чай, молоко, мёд, лимон, фильтр-кофе. Печенье: шоколадное с грецким орехом, маковое, овсяное; мини-круассан, шоколадные маффины. Закуски: круассан с ветчиной из индейки, канапе с сёмгой и творожным сыром."},
-  {id:"cbh", g:"Кофе-брейки", name:"«Здоровый» кофе-брейк", price:7500, per:"guest", max:4,
-   desc:"Чай, молоко, мёд, лимон, фильтр-кофе, фруктовые соки, минеральная вода. Гранола с йогуртом и ягодным соусом, чиа-пудинг с манго, фруктовая нарезка, сухофрукты. Сэндвичи с авокадо и сыром."},
-  {id:"cb3", g:"Кофе-брейки", name:"Кофе-брейк № 3", price:8800, per:"guest", max:4,
-   desc:"Чай, фильтр-кофе, соки (яблоко, вишня, апельсин), минеральная вода. Печенье: американское, фисташковое, солёное; лимонно-вафельный маффин, улитка с корицей и изюмом, лимонная тарталетка. Закуски: круассан с лососем и сливочным сыром, мини-сэндвич с курицей, самса с говядиной, сигара-бёрек, брускетта с красной икрой."},
-  {id:"cb4", g:"Кофе-брейки", name:"Кофе-брейк № 4", price:13000, per:"guest", max:4,
-   desc:"Напитки как в № 3. Сладкий бар: морковный торт, творожный пирог, шоколадный мини-круассан, мраморный кекс, тарталетки с ягодами, брауни, сконы. Выпечка: мини-круассаны, даниш вишнёвый. Закуски: тарталетки с лососем, брускетта с авокадо и лососем, ростбиф со сливочным сыром, канапе с моцареллой, круассан с лососем, фрукты, канапе с креветками, буррито с овощами."},
-  {id:"cb5", g:"Кофе-брейки", name:"Кофе-брейк № 5", price:18000, per:"guest", max:4,
-   desc:"Напитки как в № 3. Сладкий бар: медовый торт, шоколадно-вишнёвая тарталетка, кокосовый крем с манго, малиновый чизкейк, кофейные профитроли, клубничный тирамису, манго-лаймовая тарталетка. Закуски: брускетта с авокадо и лососем, валованы с красной икрой, ростбиф, канапе с фетой, мини-сэндвич с копчёным лососем, фрукты, креветки в панировке. Горячий аперитив: мини-шашлык из баранины, куриные палочки, мини муска-бёрек, сёмга на шпажке."},
-
-  {id:"lunch",  g:"Обед и ужин", name:"Обед (комплексный)", price:12000, per:"guest", max:1,
-   desc:"7 вариантов на выбор, например: солянка, «Цезарь» с курицей, куриная грудка гриль с пюре, чизкейк; или суп с лапшой и курицей, оливье, манты с говядиной и тыквой, фисташковый рулет. Чай, кофе, соки."},
-  {id:"dinner", g:"Обед и ужин", name:"Ужин (комплексный)", price:15000, per:"guest", max:1,
-   desc:"Те же 7 вариантов меню, например: борщ, сезонный салат, филе дорадо с белым соусом и рисом, «Красный бархат»; или суп «Корган», греческий салат, бефстроганов с пюре, «Наполеон». Чай, кофе, соки."},
-  {id:"buf1",   g:"Обед и ужин", name:"Шведский стол, буфет № 1", price:28000, per:"guest", max:1, buffet:true,
-   desc:"Холодный буфет: хлеб, фокачча, баурсаки, салат-бар, «Цезарь», казы, жая, жал, карта, сельдь с картофелем, свекольный салат с козьим сыром, овощи гриль. Горячий: форель, манты, крылышки баффало, пюре, жареные овощи. Сладкий: фрукты, медовое пирожное, профитроли. Вода, чай, кофе, соки."},
-  {id:"buf2",   g:"Обед и ужин", name:"Шведский стол, буфет № 2", price:32000, per:"guest", max:1, buffet:true,
-   desc:"Холодный буфет: мясные деликатесы, сыры, рыбное и кавказское ассорти, салат мясной, салат с креветками и кедровым орешком, свекольный салат, овощи гриль. Горячий: сирне из говядины, куриный рулет, сёмга на шпажках, феттучини Альфредо, пюре, рататуй. Сладкий: рисовый пудинг, чизкейк с ягодами, фрукты. Вода, чай, кофе, 4 вида соков, прохладительные напитки."},
-
-  {id:"ban1", g:"Банкет", name:"Банкетное меню № 1", price:50000, per:"guest", max:1,
-   desc:"Салаты: рулетики из баклажанов с маскарпоне, «Цезарь» с креветками или курицей, тайский с говядиной, «Филадельфия». Казахские деликатесы, копчёная рыба, кавказское ассорти, баурсаки. Спринг-роллы. Горячее: бешбармак или медальоны в грибном соусе; филе сибаса с овощами и рисом басмати. Фрукты, мини-выпечка, сухофрукты. Соки, кола, вода, чай."},
-  {id:"ban2", g:"Банкет", name:"Банкетное меню № 2", price:65000, per:"guest", max:1,
-   desc:"Салаты: с морскими деликатесами и песто, хрустящие баклажаны с телятиной, буррата с томатами, руккола с «Креметтой», микс с сёмгой. Казахские деликатесы, копчёная рыба, овощная тарелка, красная икра. Самса, сигара-бёрек. Горячее: говяжьи рёбрышки или бешбармак с кониной; стейк из лосося. Фрукты, выпечка, макаруны. Соки, кола, вода, чай."},
-  {id:"ban3", g:"Банкет", name:"Банкетное меню № 3", price:90000, per:"guest", max:1,
-   desc:"Салаты: «Цезарь», с королевскими креветками, с утиной грудкой и моцареллой, тайский, из свёклы и зелёного яблока. Казахские деликатесы, копчёная рыба, запечённая белуга, красная икра, сырная тарелка. Конфи из утки, самса. Горячее: бешбармак с кониной или тушёные рёбрышки с трюфелем; чёрная треска терияки. Индивидуальный десерт. Соки, «Боржоми», кола, вода, чай."},
-
-  {id:"canape", g:"Фуршет и закуски", name:"Канапе", price:2000, per:"piece", step:10, min:30,
-   desc:"Гуакамоле на тостах, канапе с моцареллой, брускетта с авокадо и лососем, канапе с креветками, с сёмгой и творожным сыром, круассаны с лососем или ветчиной из индейки, брускетта с красной икрой. Минимальный заказ — 30 шт."},
-  {id:"hot",    g:"Фуршет и закуски", name:"Горячие закуски", price:2500, per:"piece", step:10,
-   desc:"Спринг-роллы с соусом чили, фалафель, темпура из креветок, индийская и мясная самса, фаршированные грибы, мини-долма, мини-бургер с говядиной, сырный крокет."},
-  {id:"ap_fruit",  g:"Аперитив", name:"Фруктовое ассорти", price:10000, per:"plate", step:1, desc:"Подаётся перед началом приёма."},
-  {id:"ap_nuts",   g:"Аперитив", name:"Орехи и сухофрукты", price:10000, per:"plate", step:1, desc:"Подаётся перед началом приёма."},
-  {id:"ap_olives", g:"Аперитив", name:"Оливки и маслины", price:10000, per:"plate", step:1, desc:"Подаётся перед началом приёма."},
-  {id:"ap_berry",  g:"Аперитив", name:"Ягодное ассорти", price:30000, per:"plate", step:1, desc:"Подаётся перед началом приёма."},
-  {id:"ap_cheese", g:"Аперитив", name:"Сырная тарелка с сухофруктами и виноградом", price:15000, per:"plate", step:1, desc:"Подаётся перед началом приёма."},
-
-  {id:"st_kz",   g:"Станции", name:"«Казахстан» — эксклюзивный бар", price:850000, per:"station", step:1, desc:"На 50 гостей: свежие устрицы — 100 шт., чёрная икра — 0,5 кг."},
-  {id:"st_trad", g:"Станции", name:"Бар традиционной кухни", price:250000, per:"station", step:1, desc:"На 50 гостей: баурсаки, самса с говядиной, курт, джент, иримшик, чак-чак."},
-  {id:"st_anti", g:"Станции", name:"Антипасто", price:400000, per:"station", step:1, desc:"Моцарелла, проволоне, жареный перец, оливки, артишоки, маринованный лук."},
-  {id:"st_sea",  g:"Станции", name:"Станция морепродуктов", price:1500000, per:"station", step:1, desc:"На 50 гостей: охлаждённые креветки, клешни краба, устрицы, мидии на льду, трио соусов."},
-
-  {id:"alc", g:"Напитки", name:"Алкогольные напитки, безлимит", price:12000, per:"guest", max:1, from:true,
-   desc:"Цена от 12 000 ₸ за гостя. Базовый пакет: вино красное и белое Cielo e Terra, пиво Efes, соки, кола, вода, лёд, лимон. Другие пакеты — по запросу."}
-];
-const MENU_BY_ID = Object.fromEntries(MENU.map(m => [m.id, m]));
-const UNIT = {guest:"гость", piece:"шт.", plate:"тарелка", station:"станция"};
-const DUR = {h4:"4 часа", h8:"8 часов"};
-
-/* Менеджеры по бронированию */
-const MANAGERS = [
-  {phone:"+7 702 478 21 82", wa:"77024782182"},
-  {phone:"+7 747 742 27 44", wa:"77477422744"},
-  {phone:"+7 702 122 10 87", wa:"77021221087"}
-];
-
-const STATUS_LABEL = {free:"Свободно", hold:"Предварительная бронь", booked:"Занято"};
-const REQ_LABEL = {new:"Новая", hold:"Предв. бронь", booked:"Подтверждена", declined:"Отклонена"};
-const MONTHS = ["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"];
-const MONTHS_GEN = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
-const DOW = ["пн","вт","ср","чт","пт","сб","вс"];
-
-const $ = id => document.getElementById(id);
-const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/ | /g," ") + " ₸";
-const pad = n => String(n).padStart(2,"0");
-const iso = d => d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
-const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y,m-1,d); };
-const human = s => { const d = parse(s); return d.getDate()+" "+MONTHS_GEN[d.getMonth()]+" "+d.getFullYear(); };
-const humanShort = s => { const d = parse(s); return DOW[(d.getDay()+6)%7]+", "+d.getDate()+" "+MONTHS_GEN[d.getMonth()]; };
-const monthKey = s => s.slice(0,7);
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const isWeekend = s => { if (!s) return false; const d = parse(s).getDay(); return d === 5 || d === 6 || d === 0; };
-
-const today = new Date(); today.setHours(0,0,0,0);
-const todayIso = iso(today);
-
-const S = { hall:"gb", mode:"pkg", pkg:"standard", dur:"h8", equipOn:true, guests:250, date:null,
-  items:{ pkg:{}, rent:{cb2:2, lunch:1} },
-  viewY:today.getFullYear(), viewM:today.getMonth(),
-  cal:{}, calState:"loading", db:null, user:null, uid:null, canWrite:null, isMgr:false, mgrMode:false,
-  myReqs:[], allReqs:{} };
-
-function statusOf(date, hall){
-  if (S.calState === "off") return "unknown";
-  const m = S.cal[monthKey(date)];
-  return (m && m.days && m.days[date] && m.days[date][hall]) || "free";
-}
-
-/* ---------- расчёт ---------- */
-function curSel(){
-  const h = HALLS[S.hall], mode = h.pkg ? S.mode : "rent";
-  return { hall:S.hall, mode, pkg:S.pkg, dur:S.dur, equipOn: !!h.equip && S.equipOn, guests:S.guests, date:S.date,
-           items: Object.fromEntries(Object.entries(S.items[mode]).filter(([,q]) => q > 0)) };
-}
-function equipPrice(h, sel){
-  if (!h.equip) return 0;
-  if (h.equip.flat != null) return h.equip.flat;
-  return (sel.mode === "pkg" || isWeekend(sel.date)) ? h.equip.h8 : h.equip[sel.dur];
-}
-function itemAmount(m, q, guests){ return m.per === "guest" ? m.price * q * guests : m.price * q; }
-function calc(sel){
-  sel = sel || curSel();
-  const h = HALLS[sel.hall], lines = [], we = isWeekend(sel.date);
-  if (sel.mode === "pkg" && h.pkg){
-    const p = h.pkg[sel.pkg], base = p * sel.guests;
-    lines.push({label:`${PKGS[sel.pkg].name}: ${sel.guests} × ${fmt(p)}`, net:base});
-    if (PKG_DISCOUNT) lines.push({label:`Скидка на пакет ${Math.round(PKG_DISCOUNT*100)}%`, net:-base*PKG_DISCOUNT, minus:true});
-    lines.push({label:"Аренда зала", net:0, note:"входит в пакет"});
-  } else {
-    lines.push({label: we ? "Аренда зала, выходной день (пт–вс)" : `Аренда зала, ${DUR[sel.dur]}`, net: we ? h.rent.we : h.rent[sel.dur]});
-  }
-  if (h.equip && sel.equipOn) lines.push({label:"Оборудование", net:equipPrice(h, sel)});
-  for (const [id, q] of Object.entries(sel.items || {})){
-    const m = MENU_BY_ID[id]; if (!m || !q) continue;
-    const amt = itemAmount(m, q, sel.guests);
-    const how = m.per === "guest" ? `${sel.guests} × ${fmt(m.price)}${q>1?" × "+q:""}` : `${q} ${UNIT[m.per]} × ${fmt(m.price)}`;
-    lines.push({label:`${m.name}: ${how}`, net:amt});
-  }
-  const net = lines.reduce((s,l) => s + l.net, 0), vat = net * VAT;
-  return { lines, net, vat, total: net + vat, weekend: we && sel.mode !== "pkg" };
-}
-/* описание выбора одной строкой (для заявки и списка заявок) */
-function summaryOf(r){
-  const h = HALLS[r.hall]; if (!h) return "";
-  const parts = [];
-  if (r.mode === "pkg" || (!r.mode && !r.items && r.pkg)) parts.push(PKGS[r.pkg]?.name || "Конференц-пакет");
-  else parts.push(isWeekend(r.date) ? "аренда: выходной день" : "аренда: " + (DUR[r.dur] || "8 часов"));
-  if (h.equip) parts.push(r.equipOn === false ? "без оборудования" : "с оборудованием");
-  const its = Object.entries(r.items||{}).filter(([,q])=>q>0).map(([id,q]) => {
-    const m = MENU_BY_ID[id]; if (!m) return "";
-    return m.name + (m.per === "guest" ? (q>1 ? " ×"+q : "") : ` — ${q} ${UNIT[m.per]}`);
-  }).filter(Boolean);
-  if (its.length) parts.push(its.join(", "));
-  parts.push(`${r.guests} гостей`);
-  return parts.join(" · ");
-}
-
-/* ---------- залы ---------- */
-function hallFrom(h){ return Math.min(h.rent.h4, h.rent.h8); }
-function selectHall(k){
-  S.hall = k; const h = HALLS[k];
-  if (S.guests > h.cap[1]) S.guests = h.cap[1];
-  if (S.guests < h.cap[0]) S.guests = h.cap[0];
-  if (!h.pkg) S.mode = "rent";
-  if (S.date && statusOf(S.date,S.hall) !== "free" && statusOf(S.date,S.hall) !== "unknown" && !S.mgrMode) S.date = null;
-  renderAll();
-}
-function hallImg(h, cls){
-  return h.photos.length
-    ? `<img src="${h.photos[0]}" alt="Зал ${h.name}" loading="lazy">`
-    : `<div class="ph ${cls||""}" aria-hidden="true"><span>${h.name}</span><small>${h.area}</small></div>`;
-}
-function renderHalls(){
-  const big = Object.entries(HALLS).filter(([,h]) => h.cap[1] > 40), small = Object.entries(HALLS).filter(([,h]) => h.cap[1] <= 40);
-  const card = ([k,h]) => `
-    <button class="hall${h.cap[1] <= 40 ? " sm" : ""}" type="button" data-hall="${k}" aria-pressed="${S.hall===k}">
-      ${hallImg(h)}
-      <div class="b">
-        <h3>${h.name}<small>${h.area}</small></h3>
-        <div class="meta">${h.cap[1] <= 40 ? "до " + h.cap[1] : h.cap[0] + "–" + h.cap[1]} гостей · ${h.where}</div>
-        <div class="price num">аренда от <b>${fmt(hallFrom(h))}</b> / 4 ч${h.pkg ? ` · пакет от <b>${fmt(h.pkg.standard)}</b> / гость` : ""}</div>
+<main>
+  <section class="hero dark" id="top">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="eyebrow">Конференции · Встречи · Собрания · Показы</p>
+        <h1>Легендарное пространство для значимых событий</h1>
+        <p class="lead" style="font-size:18px;max-width:560px">В самом сердце Алматы, где история встречается с современностью. Элегантные залы, панорамные виды на город и горы, профессиональная команда и безупречный сервис.</p>
+        <div class="row" style="gap:12px">
+          <a class="btn btn-gold" href="#halls">Выбрать зал</a>
+          <a class="btn btn-line" href="prices.html">Рассчитать стоимость</a>
+          <a class="btn btn-line" href="https://pano3d.kz/Kahazakhstan_VR/" target="_blank" rel="noopener">3D-тур по отелю</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>6</b><span>залов и переговорных</span></div>
+          <div><b>700</b><span>гостей в главном зале</span></div>
+          <div><b>820 м²</b><span>Grand Ballroom</span></div>
+        </div>
       </div>
-    </button>`;
-  $("halls").innerHTML = big.map(card).join("") + `<h4 class="sub-h">Переговорные</h4><div class="halls-sm">${small.map(card).join("")}</div>`;
-  $("halls").querySelectorAll(".hall").forEach(b => b.onclick = () => selectHall(b.dataset.hall));
-
-  const h = HALLS[S.hall];
-  const eq = !h.equip ? "—" : h.equip.flat != null ? fmt(h.equip.flat) : `${fmt(h.equip.h4)} / 4 ч · ${fmt(h.equip.h8)} / 8 ч`;
-  $("details").innerHTML = `
-    <div>
-      <h4>${h.name} — цены без НДС</h4>
-      <div class="row"><span>Аренда, 4 часа</span><span class="num">${fmt(h.rent.h4)}</span></div>
-      <div class="row"><span>Аренда, 8 часов</span><span class="num">${fmt(h.rent.h8)}</span></div>
-      <div class="row"><span>Выходные (пт, сб, вс)</span><span class="num">${fmt(h.rent.we)}</span></div>
-      <div class="row"><span>Оборудование</span><span class="num">${eq}</span></div>
-      ${h.pkg ? `<div class="row"><span>Конференц-пакет</span><span class="num">Standard ${fmt(h.pkg.standard)} · Premium ${fmt(h.pkg.premium)} за гостя, от ${h.pkg.min} гостей</span></div>` : ""}
-      <div class="row"><span>Вместимость</span><span class="num">${h.cap[1] <= 40 ? "до " + h.cap[1] : h.cap[0] + "–" + h.cap[1]} гостей · ${h.area}</span></div>
-    </div>
-    <div>
-      <h4>Техническое оснащение</h4>
-      ${h.tech.length ? `<dl class="tech">${h.tech.map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>` : `<p class="note">Оснащение переговорной уточняйте у менеджера.</p>`}
-    </div>
-    ${h.photos.length > 1 ? `<div class="thumbs">${h.photos.slice(1).map(p=>`<img src="${p}" alt="Зал ${h.name}" loading="lazy">`).join("")}</div>` : ""}`;
-}
-
-/* ---------- calendar ---------- */
-$("dows").innerHTML = DOW.map(d=>`<div class="dow">${d}</div>`).join("");
-const maxView = new Date(today.getFullYear(), today.getMonth()+18, 1);
-
-function renderCal(){
-  $("legend").hidden = S.calState === "off";
-  const y = S.viewY, m = S.viewM;
-  $("mTitle").textContent = MONTHS[m]+" "+y;
-  $("prevM").disabled = (y===today.getFullYear() && m===today.getMonth());
-  $("nextM").disabled = new Date(y,m+1,1) > maxView;
-  const first = new Date(y,m,1), lead = (first.getDay()+6)%7, n = new Date(y,m+1,0).getDate();
-  let html = "";
-  for (let i=0;i<lead;i++) html += `<span class="day blank" aria-hidden="true"></span>`;
-  for (let d=1; d<=n; d++){
-    const ds = y+"-"+pad(m+1)+"-"+pad(d), past = ds < todayIso, st = past ? "past" : statusOf(ds,S.hall);
-    const sel = ds===S.date ? " sel" : "", td = ds===todayIso ? " today" : "";
-    const clickable = !past && (S.mgrMode || st==="free" || st==="unknown");
-    const label = d+" "+MONTHS_GEN[m]+(past?"":", "+(st==="unknown"?"уточняйте у менеджера":STATUS_LABEL[st]));
-    html += `<button type="button" class="day ${st}${sel}${td}" data-d="${ds}" aria-label="${label}" ${clickable?"":"disabled"}>${d}</button>`;
-  }
-  $("days").innerHTML = html;
-  $("days").querySelectorAll("button.day:not([disabled])").forEach(b => b.onclick = () => {
-    S.date = b.dataset.d; renderAll();
-  });
-  $("dateHint").textContent = S.date ? human(S.date) : "Выберите свободный день";
-  renderForecast();
-}
-$("prevM").onclick = () => { if (--S.viewM < 0){ S.viewM=11; S.viewY--; } renderCal(); };
-$("nextM").onclick = () => { if (++S.viewM > 11){ S.viewM=0; S.viewY++; } renderCal(); };
-
-function renderForecast(){
-  const y=S.viewY, m=S.viewM, n=new Date(y,m+1,0).getDate();
-  let free=0, hold=0, busy=0, total=0;
-  for (let d=1; d<=n; d++){
-    const ds = y+"-"+pad(m+1)+"-"+pad(d); if (ds < todayIso) continue;
-    total++; const st = statusOf(ds,S.hall);
-    if (st==="hold") hold++; else if (st==="booked") busy++; else free++;
-  }
-  const next = []; const c = new Date(today);
-  for (let i=0; i<365 && next.length<5; i++){ const ds=iso(c); if (statusOf(ds,S.hall)==="free") next.push(ds); c.setDate(c.getDate()+1); }
-  const pct = v => total ? (v/total*100).toFixed(1)+"%" : "0%";
-  if (S.calState === "off"){
-    $("forecast").innerHTML = `<h4>Как бронируем</h4><p class="note">Выберите удобную дату — менеджер подтвердит, свободен ли зал, и поставит предварительную бронь.</p><p class="note">В пятницу, субботу и воскресенье действует тариф выходного дня.</p>`;
-    return;
-  }
-  $("forecast").innerHTML = `
-    <h4>Прогноз · ${MONTHS[m]}</h4>
-    <div class="fc-big num">${free}<small> из ${total} дн. свободно</small></div>
-    <div class="bar" aria-hidden="true"><span style="width:${pct(free)};background:var(--free)"></span><span style="width:${pct(hold)};background:var(--hold)"></span><span style="width:${pct(busy)};background:var(--busy)"></span></div>
-    <div class="note num">Предварительно: ${hold} · Занято: ${busy}</div>
-    <h4 style="margin-top:6px">Ближайшие свободные даты</h4>
-    <div class="next-list">${next.map(ds=>`<button type="button" data-d="${ds}"><span>${humanShort(ds)}</span><span>${HALLS[S.hall].name}</span></button>`).join("") || `<span class="note">Нет свободных дат в ближайший год</span>`}</div>`;
-  $("forecast").querySelectorAll(".next-list button").forEach(b => b.onclick = () => {
-    S.date = b.dataset.d; const d = parse(S.date); S.viewY=d.getFullYear(); S.viewM=d.getMonth(); renderAll();
-  });
-}
-
-/* ---------- формат и меню ---------- */
-const openGroups = new Set(["Кофе-брейки","Обед и ужин"]);
-const openDet = new Set();
-function rerender3(){ renderPkgs(); renderEstimate(); renderFormSummary(); }
-
-function renderPkgs(){
-  const h = HALLS[S.hall], mode = h.pkg ? S.mode : "rent", we = isWeekend(S.date);
-  const sel = S.items[mode];
-  let html = "";
-
-  if (h.pkg){
-    html += `<div class="seg wide" role="radiogroup" aria-label="Формат">
-      <button type="button" role="radio" aria-checked="${mode==="pkg"}" data-mode="pkg"><b>Конференц-пакет</b><span>зал, кофе-брейки и обед за гостя</span></button>
-      <button type="button" role="radio" aria-checked="${mode==="rent"}" data-mode="rent"><b>Аренда зала + меню</b><span>соберите питание сами</span></button>
-    </div>`;
-  }
-
-  if (mode === "pkg"){
-    html += `<div class="pkgs">${Object.entries(PKGS).map(([k,p]) => `
-      <button class="pkg" type="button" data-pkg="${k}" aria-pressed="${S.pkg===k}">
-        <div class="pkg-top"><h3>${p.name}</h3><span class="p">${fmt(h.pkg[k])} <small>/ гость</small></span></div>
-        <div class="menu">${p.menu.map(([t,d])=>`<div><b>${t}</b><span>${d}</span></div>`).join("")}</div>
-      </button>`).join("")}</div>
-      <p class="note">Аренда зала входит в пакет. Пакет в зале ${h.name} — от ${h.pkg.min} гостей.</p>`;
-  } else {
-    html += `<div class="b-block">
-      <h4>Аренда зала</h4>
-      ${we ? `<p class="note warn">${human(S.date)} — выходной день: действует тариф пт–вс ${fmt(h.rent.we)} за день.</p>` : `
-      <div class="seg" role="radiogroup" aria-label="Время аренды">${["h4","h8"].map(d => `
-        <button type="button" role="radio" aria-checked="${S.dur===d}" data-dur="${d}"><b>${DUR[d]}</b><span class="num">${fmt(h.rent[d])}</span></button>`).join("")}
+      <div class="hero-photo">
+        <img src="assets/img/gb-hero.jpg" alt="Grand Ballroom с банкетной рассадкой">
+        <div class="hero-badge"><b>Grand Ballroom</b><span>820 м² · потолки 7 м · до 700 гостей</span></div>
       </div>
-      <p class="note">В пятницу, субботу и воскресенье — ${fmt(h.rent.we)} за день.</p>`}
-    </div>`;
-  }
-
-  if (h.equip){
-    html += `<div class="b-block"><label class="toggle"><input type="checkbox" id="equipOn" ${S.equipOn?"checked":""}>
-      <span>Техническое оборудование — <b class="num">${fmt(equipPrice(h, {mode, dur:S.dur, date:S.date}))}</b>${h.equip.flat == null ? (mode==="pkg"||we ? " (полный день)" : " ("+DUR[S.dur]+")") : ""}</span></label></div>`;
-  }
-
-  /* каталог меню */
-  const groups = [];
-  MENU.forEach(m => { let grp = groups.find(x => x.g === m.g); if (!grp) groups.push(grp = {g:m.g, items:[]}); grp.items.push(m); });
-  html += `<h3 class="cat-h">${mode === "pkg" ? "Дополнительно к пакету" : "Питание и напитки"}</h3>`;
-  html += groups.map(g => {
-    const n = g.items.filter(m => sel[m.id] > 0).length;
-    return `<details class="grp" data-g="${g.g}" ${openGroups.has(g.g) || n ? "open" : ""}>
-      <summary><span>${g.g}</span>${n ? `<span class="cnt">выбрано: ${n}</span>` : ""}</summary>
-      ${g.items.map(m => menuRow(m, sel[m.id]||0, h)).join("")}
-    </details>`;
-  }).join("");
-
-  $("s3").textContent = mode === "pkg" ? "Пакет и меню" : "Аренда и питание";
-  $("s3hint").textContent = "Цены без НДС";
-  $("pkgs").className = "builder";
-  $("pkgs").innerHTML = html;
-
-  /* события */
-  const P = $("pkgs");
-  P.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { S.mode = b.dataset.mode; rerender3(); });
-  P.querySelectorAll("[data-pkg]").forEach(b => b.onclick = () => { S.pkg = b.dataset.pkg; rerender3(); });
-  P.querySelectorAll("[data-dur]").forEach(b => b.onclick = () => { S.dur = b.dataset.dur; rerender3(); });
-  const eq = $("equipOn"); if (eq) eq.onchange = () => { S.equipOn = eq.checked; renderEstimate(); renderFormSummary(); };
-  P.querySelectorAll("details.grp").forEach(d => d.ontoggle = () => { d.open ? openGroups.add(d.dataset.g) : openGroups.delete(d.dataset.g); });
-  P.querySelectorAll("details.mdesc").forEach(d => d.ontoggle = () => { d.open ? openDet.add(d.dataset.id) : openDet.delete(d.dataset.id); });
-  P.querySelectorAll("button[data-item]").forEach(b => b.onclick = () => {
-    const m = MENU_BY_ID[b.dataset.item], dir = Number(b.dataset.d), cur = sel[m.id] || 0;
-    let q;
-    if (m.per === "guest") q = Math.max(0, Math.min(m.max, cur + dir));
-    else { const st = m.step || 1; q = cur + dir*st; if (m.min && dir > 0 && q < m.min) q = m.min; if (m.min && dir < 0 && q < m.min) q = 0; q = Math.max(0, q); }
-    sel[m.id] = q;
-    rerender3();
-    $("pkgs").querySelector(`button[data-item="${m.id}"][data-d="${b.dataset.d}"]`)?.focus();
-  });
-  P.querySelectorAll("input[data-item]").forEach(c => c.onchange = () => {
-    sel[c.dataset.item] = c.checked ? 1 : 0; rerender3();
-    $("pkgs").querySelector(`input[data-item="${c.dataset.item}"]`)?.focus();
-  });
-  P.querySelectorAll("input[data-qty]").forEach(inp => inp.onchange = () => {
-    const m = MENU_BY_ID[inp.dataset.qty]; let q = Math.max(0, Math.round(Number(inp.value) || 0));
-    if (m.min && q > 0 && q < m.min) q = m.min;
-    sel[m.id] = q; rerender3();
-  });
-}
-
-function menuRow(m, q, h){
-  let warn = "";
-  if (m.buffet && h.buffetMin && S.guests < h.buffetMin && q) warn = `В зале ${h.name} шведский стол — от ${h.buffetMin} гостей.`;
-  if (m.buffet && !h.buffetMin && q) warn = "Шведский стол в этом зале — по согласованию с менеджером.";
-  const unit = m.per === "guest" ? "гость" : UNIT[m.per];
-  let ctrl;
-  if (m.per === "guest" && m.max === 1){
-    ctrl = `<label class="chk"><input type="checkbox" data-item="${m.id}" ${q?"checked":""}> <span>${q ? "Выбрано" : "Добавить"}</span></label>`;
-  } else if (m.per === "guest"){
-    ctrl = `<div class="stepper sm" role="group" aria-label="${m.name}, подач">
-      <button type="button" data-item="${m.id}" data-d="-1" aria-label="Убрать подачу">−</button>
-      <output class="num">${q}</output>
-      <button type="button" data-item="${m.id}" data-d="1" aria-label="Добавить подачу">+</button></div>`;
-  } else {
-    ctrl = `<div class="stepper sm qty" role="group" aria-label="${m.name}, количество">
-      <button type="button" data-item="${m.id}" data-d="-1" aria-label="Меньше">−</button>
-      <input class="num" data-qty="${m.id}" inputmode="numeric" value="${q}" aria-label="${m.name}, количество">
-      <button type="button" data-item="${m.id}" data-d="1" aria-label="Больше">+</button></div>`;
-  }
-  const sum = q ? `<span class="mi-sum num">${fmt(itemAmount(m, q, S.guests))}</span>` : "";
-  return `<div class="mi${q?" on":""}">
-    <div class="mi-main">
-      <div class="mi-name">${m.name}</div>
-      <div class="mi-price num">${m.from ? "от " : ""}${fmt(m.price)} <small>/ ${unit}${m.per==="guest" && m.max>1 ? " за подачу" : ""}${m.min ? ` · от ${m.min} шт.` : ""}</small></div>
-      <details class="mdesc" data-id="${m.id}" ${openDet.has(m.id)?"open":""}><summary>Состав</summary><p>${m.desc}</p></details>
-      ${warn ? `<p class="note warn">${warn}</p>` : ""}
     </div>
-    <div class="mi-ctl">${ctrl}${sum}</div>
-  </div>`;
-}
+  </section>
 
-/* ---------- гости ---------- */
-const PRESETS = [10, 30, 50, 100, 150, 200, 250, 300, 500];
-function setGuests(v){
-  v = Math.max(1, Math.min(800, Math.round(Number(v)||0)));
-  S.guests = v; renderGuests(); renderPkgs(); renderEstimate(); renderFormSummary();
-}
-function gStep(){ return HALLS[S.hall].cap[1] <= 40 || S.guests < 20 ? 1 : 10; }
-function renderGuests(){
-  const h = HALLS[S.hall];
-  if (document.activeElement !== $("gNum")) $("gNum").value = S.guests;
-  $("gRange").max = h.cap[1]; $("gRange").min = 1; $("gRange").step = h.cap[1] <= 40 ? 1 : 10; $("gRange").value = S.guests;
-  $("presets").innerHTML = PRESETS.filter(p => p <= h.cap[1] && p >= Math.min(h.cap[0],10)).map(p=>`<button type="button" data-g="${p}" aria-pressed="${S.guests===p}">${p}</button>`).join("");
-  $("presets").querySelectorAll("button").forEach(b => b.onclick = () => setGuests(b.dataset.g));
-  const msgs = [];
-  if (S.guests > h.cap[1]) msgs.push(`Зал «${h.name}» вмещает до ${h.cap[1]} гостей.`);
-  else if (S.guests < h.cap[0]) msgs.push(`Зал «${h.name}» рассчитан на ${h.cap[0]}–${h.cap[1]} гостей.`);
-  if (h.pkg && S.mode === "pkg" && S.guests < h.pkg.min) msgs.push(`Конференц-пакет в этом зале — от ${h.pkg.min} гостей.`);
-  $("capNote").textContent = msgs.join(" ");
-  $("capNote").hidden = !msgs.length;
-}
-$("gMinus").onclick = () => setGuests(S.guests - gStep());
-$("gPlus").onclick = () => setGuests(S.guests + gStep());
-$("gRange").oninput = e => setGuests(e.target.value);
-$("gNum").oninput = e => { if (e.target.value) setGuests(e.target.value); };
-$("gNum").onblur = () => renderGuests();
+  <div id="shows"></div>
 
-/* ---------- расчёт справа ---------- */
-function renderEstimate(){
-  const h = HALLS[S.hall], sel = curSel(), c = calc(sel);
-  $("mbarTotal").textContent = fmt(c.total);
-  $("mbarSub").textContent = h.name + " · " + S.guests + " гостей · с НДС";
-  $("est").innerHTML = `
-    <h2>Расчёт</h2>
-    <div class="sumline"><b>${h.name}</b> · <span class="num">${S.guests}</span> гостей<br>${S.date ? human(S.date) + (c.weekend ? " · выходной тариф" : "") : "Дата не выбрана"}</div>
-    <div class="lines">
-      ${c.lines.map(l => `<div class="ln${l.minus?" minus":""}${l.note?" free":""}"><span>${l.label}</span><span>${l.note ? l.note : (l.minus ? "− " + fmt(-l.net) : fmt(l.net))}</span></div>`).join("")}
-      <div class="ln sub"><span>Итого без НДС</span><span>${fmt(c.net)}</span></div>
-      <div class="ln"><span>НДС 16%</span><span>+ ${fmt(c.vat)}</span></div>
+  <section id="halls" style="padding-top:88px">
+    <div class="wrap stack" style="gap:32px">
+      <div class="row" style="align-items:flex-end;justify-content:space-between;gap:16px">
+        <div class="stack" style="gap:10px"><p class="eyebrow">Наши пространства</p><h2 class="h2">Выберите зал</h2></div>
+        <p class="lead" style="max-width:440px">Нажмите на зал, чтобы увидеть фото, план с размерами, варианты рассадки и техническое оснащение.</p>
+      </div>
+      <div class="halls-grid" id="hallCards"></div>
     </div>
-    <div class="total"><span>Итого с НДС</span><b>${fmt(c.total)}</b></div>
-    <div class="pp"><span class="note">Расчёт предварительный. Условия предоплаты и окончательная сумма — у менеджера.</span></div>
-    <button class="btn" type="button" id="toReq">${S.date ? "Отправить заявку" : "Выбрать дату"}</button>`;
-  $("toReq").onclick = goNext;
-}
-function goNext(){
-  const target = S.date ? $("reqSection") : $("s2");
-  target.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
-  if (S.date) setTimeout(()=> $("fName").focus({preventScroll:true}), 350);
-}
-$("mbarBtn").onclick = goNext;
+  </section>
 
-/* ---------- request form ---------- */
-function renderFormSummary(){
-  $("formSummary").textContent = S.date
-    ? `${HALLS[S.hall].name}, ${human(S.date)} · ${summaryOf(curSel())} — ${fmt(calc().total)}`
-    : "Выберите дату в календаре";
-}
-function requestText(r){
-  return [
-    "Заявка на предварительную бронь — отель «Казахстан»",
-    `Зал: ${HALLS[r.hall].name}`,
-    `Дата: ${human(r.date)}`,
-    `Состав: ${summaryOf(r)}`,
-    `Предварительный расчёт: ${fmt(r.total)} с НДС 16%`,
-    `Контакт: ${r.name}${r.company ? ", "+r.company : ""}`,
-    `Телефон: ${r.phone}${r.email ? ", "+r.email : ""}`,
-    r.comment ? `Комментарий: ${r.comment}` : ""
-  ].filter(Boolean).join("\n");
-}
-function showMsg(kind, html){ const m=$("formMsg"); m.className="msg "+kind; m.innerHTML=html; m.hidden=false; }
-function showCopyFallback(r, lead){
-  showMsg("ok", `${lead}<pre id="reqText">${esc(requestText(r))}</pre>
-    <button class="btn sm" type="button" id="copyReq">Скопировать заявку</button>
-    <div class="wa">${MANAGERS.map(m => `<a class="btn sm ghost" href="https://wa.me/${m.wa}?text=${encodeURIComponent(requestText(r))}" target="_blank" rel="noopener">WhatsApp ${esc(m.phone)}</a>`).join("")}</div>`);
-  $("copyReq").onclick = async () => {
-    try { await navigator.clipboard.writeText(requestText(r)); $("copyReq").textContent = "Скопировано"; }
-    catch(e){ const sel = getSelection(), rg = document.createRange(); rg.selectNodeContents($("reqText")); sel.removeAllRanges(); sel.addRange(rg); $("copyReq").textContent = "Выделено — нажмите Копировать"; }
-  };
-}
+  <section id="hall" style="padding:32px 0 88px">
+    <div class="wrap"><div class="card detail" id="hallDetail"></div></div>
+  </section>
 
-$("reqForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  $("formMsg").hidden = true;
-  if (!S.date){ showMsg("err","Выберите дату в календаре — шаг 02."); return; }
-  const name = $("fName").value.trim(), phone = $("fPhone").value.trim();
-  if (!name || phone.replace(/\D/g,"").length < 10){ showMsg("err","Укажите контактное лицо и телефон (не меньше 10 цифр)."); return; }
-  if (statusOf(S.date,S.hall) !== "free" && statusOf(S.date,S.hall) !== "unknown"){ showMsg("err","Эта дата уже занята. Выберите другую."); return; }
-  const r = { id: "r"+Date.now().toString(36)+Math.random().toString(36).slice(2,6), createdAt: new Date().toISOString(),
-    ...JSON.parse(JSON.stringify(curSel())), date:S.date, total:Math.round(calc().total), hallName:HALLS[S.hall].name, summary:summaryOf(curSel()),
-    name, company:$("fCompany").value.trim(), phone, email:$("fEmail").value.trim(), comment:$("fComment").value.trim(), status:"new" };
+  <section id="compare" style="background:var(--sand)">
+    <div class="wrap stack" style="gap:28px;padding-top:80px;padding-bottom:80px">
+      <div class="stack" style="gap:10px"><p class="eyebrow">Сравнение</p><h2 class="h2">Вместимость по форматам</h2></div>
+      <div class="table-box">
+        <table style="min-width:820px">
+          <thead><tr><th scope="col">Зал</th><th scope="col">Площадь</th><th scope="col">Банкет</th><th scope="col">Театр</th><th scope="col">Фуршет</th><th scope="col">Класс</th><th scope="col">«О» / «П»</th></tr></thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+      <p style="font-size:13px;color:var(--muted)">Количество гостей указано максимальное для каждой схемы рассадки. «—» — формат для зала не предусмотрен.</p>
+    </div>
+  </section>
 
-  if (!API_URL || API_URL.indexOf("http") !== 0){
-    showCopyFallback(r, "Заявка сформирована. Отправьте её текст менеджеру:");
-    return;
-  }
-  $("submitBtn").disabled = true;
-  try {
-    const res = await fetch(API_URL, { method:"POST", body: JSON.stringify({
-      action:"request", hp: $("fWebsite").value, id:r.id, date:r.date, hall:r.hall, hallName:r.hallName,
-      guests:r.guests, summary:r.summary, total:r.total, name:r.name, company:r.company, phone:r.phone, email:r.email, comment:r.comment }) });
-    const out = await res.json();
-    if (!out.ok) throw new Error(out.error || "server");
-    showMsg("ok", `<b>Заявка отправлена.</b> Менеджер свяжется с вами по номеру ${esc(phone)} и поставит предварительную бронь на ${esc(human(r.date))}.`);
-    $("fComment").value = "";
-  } catch(err){
-    showCopyFallback(r, "Не получилось отправить заявку автоматически. Отправьте её текст менеджеру:");
-  } finally { $("submitBtn").disabled = false; }
-});
+  <section id="tour" class="tour dark">
+    <div class="wrap">
+      <a class="tour-pic" href="https://pano3d.kz/Kahazakhstan_VR/#media-name=%D0%A1onference%20room%201&amp;yaw=0.39&amp;pitch=-12.27&amp;fov=110.00" target="_blank" rel="noopener" aria-label="Открыть 3D-тур в новой вкладке">
+        <img src="assets/img/gp-0.jpg" alt="" loading="lazy">
+        <span><i><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="9" ry="3.5"/><path d="M12 3v18"/></svg></i>Открыть панораму 360°</span>
+      </a>
+      <div class="stack" style="flex:1 1 380px;min-width:0;gap:20px">
+        <p class="eyebrow">Виртуальный визит</p>
+        <h2 class="h2">Осмотрите залы, не выходя из офиса</h2>
+        <p class="lead" style="font-size:17px">Интерактивный 3D-тур: переходите между залами, разворачивайте панораму и оценивайте пространство, свет и отделку до визита.</p>
+        <a class="btn btn-gold" style="align-self:flex-start" href="https://pano3d.kz/Kahazakhstan_VR/" target="_blank" rel="noopener">Начать 3D-тур</a>
+      </div>
+    </div>
+  </section>
 
-function renderMgr(){}
-function renderWho(){}
-function renderAll(){ renderHalls(); renderCal(); renderPkgs(); renderGuests(); renderEstimate(); renderFormSummary(); }
-renderAll();
+  <section id="contacts">
+    <div class="wrap stack" style="gap:32px;padding-top:80px;padding-bottom:64px">
+      <h2 class="h2">Спланируем ваше событие</h2>
+      <div class="contacts-grid">
+        <div class="card">
+          <span class="eyebrow">Менеджеры по бронированию</span>
+          <a href="tel:+77021221087">Арайлым · +7 702 122 10 87</a>
+          <a href="tel:+77024782182">Аида · +7 702 478 21 82</a>
+          <a href="tel:+77477422744">Адема · +7 747 742 27 44</a>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Почта</span>
+          <a href="mailto:arai@grandballroom.kz">Арайлым · arai@grandballroom.kz</a>
+          <a href="mailto:aida@grandballroom.kz">Аида · aida@grandballroom.kz</a>
+          <a href="mailto:ademi@grandballroom.kz">Адема · ademi@grandballroom.kz</a>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Адрес</span>
+          <span style="font-size:20px">Алматы, пр. Достык 52/2</span>
+          <a href="https://www.kazakhstanhotel.kz" target="_blank" rel="noopener" style="font-size:15px;color:var(--bronze)">kazakhstanhotel.kz</a>
+          <a href="booking.html" style="font-size:15px;color:var(--bronze)">Календарь и онлайн-заявка</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-/* ---------- календарь из Google Таблицы ---------- */
-async function loadCalendar(){
-  if (!API_URL || API_URL.indexOf("http") !== 0){ S.calState = "off"; renderAll(); return; }
-  const timer = setTimeout(() => { $("calNote").textContent = "Календарь загружается дольше обычного — занятость может быть неактуальной."; $("calNote").className="note warn"; $("calNote").hidden=false; }, 10000);
-  try {
-    const res = await fetch(API_URL + "?action=calendar&t=" + Date.now());
-    const out = await res.json();
-    if (!out.ok) throw new Error("bad");
-    const cal = {};
-    (out.rows||[]).forEach(r => {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(r.date) || !HALLS[r.hall] || !STATUS_LABEL[r.status]) return;
-      const mk = monthKey(r.date); cal[mk] = cal[mk] || {days:{}};
-      cal[mk].days[r.date] = cal[mk].days[r.date] || {};
-      cal[mk].days[r.date][r.hall] = r.status;
-    });
-    S.cal = cal; S.calState = "ok"; $("calNote").hidden = true;
-  } catch(e){
-    S.calState = "off";
-  }
-  clearTimeout(timer);
-  if (S.date && statusOf(S.date,S.hall) !== "free" && statusOf(S.date,S.hall) !== "unknown") S.date = null;
-  renderAll();
-}
-loadCalendar();
-setInterval(() => { if (document.visibilityState === "visible") loadCalendar(); }, 5*60*1000);
-})();
-</script>
+<footer class="site-footer">
+  <div class="wrap"><span>© <span id="year">2026</span> Kazakhstan Hotel, Almaty</span><span>Конференции · Встречи · Собрания · Показы</span></div>
+</footer>
+
+<script src="assets/music.js"></script>
+<script src="assets/main.js"></script>
 </body>
 </html>
