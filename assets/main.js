@@ -1,7 +1,10 @@
 (function () {
   var IMG = 'assets/img/';
   var TOUR = 'https://pano3d.kz/Kahazakhstan_VR/';
-  var TOURS = { gb: TOUR, gp: TOUR, eh: TOUR, ae: TOUR };
+  var TOURS = {
+    gb: 'https://pano3d.kz/Kahazakhstan_VR/#media-name=%C2%ABGrand%20Ballroom%C2%BB&yaw=-106.51&pitch=-6.92&fov=130.00',
+    gp: TOUR, eh: TOUR, ae: TOUR
+  };
 
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var $ = function (id) { return document.getElementById(id); };
